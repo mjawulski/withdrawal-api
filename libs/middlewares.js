@@ -11,27 +11,10 @@ const responseTime = require('response-time');
 const logger = require('./logger');
 
 const isProduction = process.env.NODE_ENV === 'production';
-const allowedOrigins = process.env.APP_URLS.split(',');
 
 module.exports = app => {
   app.use(responseTime());
   app.use(helmet());
-  app.use(
-    cors({
-      origin: (origin, next) => {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-          next(null, true);
-        } else {
-          const msg = 'The CORS policy for this site does not allow access from the specified Origin';
-          next(new Error(msg));
-        }
-      },
-      credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-      allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization', 'X-Access-Token'],
-      preflightContinue: false
-    })
-  );
   app.use(
     morgan(
       ':remote-addr - :remote-user ":method :url HTTP/:http-version" status: :status :res[content-length] - :response-time ms ":referrer" ":user-agent"',
