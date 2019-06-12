@@ -9,6 +9,10 @@ Very basic API written in Node to demonstrate withdrawal problem.
 ```npm install & npm start```
 4. Open browser
 5. Go to: http://localhost:8080/api/v1/withdrawal/<amount> (example: http://localhost:8080/api/v1/withdrawal/1280 )
+  
+  or....
+  
+6. Just go to https://money-withdrawal-api.herokuapp.com/api/v1/withdrawal/120 to see it in action! 
 
 ### Requirements
 * Node (v. 10.15.3 or greater)
